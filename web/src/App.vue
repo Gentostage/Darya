@@ -15,12 +15,12 @@ export default {
 <style>
 
 body{
-
   margin:0 auto;
   background-color:#ffffff;
-  background-image:url('../static/img/bg.jpg');
+  background-image:url('/static/img/bg.webp');
   background-repeat:no-repeat;
   background-attachment:fixed;
+  background-size: 100%;
   z-index: -1;
   scroll-behavior: smooth !important;
 }

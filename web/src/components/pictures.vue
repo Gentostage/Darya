@@ -40,9 +40,12 @@
           <p>{{activePicture.decryption}}</p>
           <div>
             <div class="con-example-images">
-              <vs-images alternating not-border-radius not-margin>
-                <vs-image @click="setImnage(index)" :key="index" :src="image.src"
-                           v-for="(image, index) in activePicture.listimage"/>
+              <vs-images :hover="hover">
+                <vs-image @click="setImnage(index)"
+                          :key="index"
+                          :src="image.src"
+                          v-for="(image, index) in activePicture.listimage
+                "/>
               </vs-images>
             </div>
           </div>
@@ -60,15 +63,18 @@ export default {
   name: 'pictures',
   data () {
     return {
+      hover: 'blur',
       instance: true,
       activePicture: []
     }
   },
   mounted () {
+    // eslint-disable-next-line no-unused-vars
     var l = {
       t: this
     }
     var Modalelem = document.querySelector('.modal')
+    // eslint-disable-next-line no-undef
     this.instance = M.Modal.init(Modalelem, {
       onOpenStart: function () {
       },
