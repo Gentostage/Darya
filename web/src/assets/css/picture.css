@@ -1,0 +1,11 @@
+.content{
+  margin-right: 10%;
+  margin-left: 10%;
+}
+.img_box {
+  margin: 10px 63px 10px 63px !important;
+}
+.card-image img{
+height: 300px;
+object-fit: cover;
+}
