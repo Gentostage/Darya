@@ -36,8 +36,16 @@
     <div>
       <div id="modal1" class="modal">
         <div class="modal-content">
-          <h4>{{activePicture.title}}</h4>
-          <p>{{activePicture.decryption}}</p>
+          <div class="row">
+
+            <div class="col s12 m6">
+              <h4>{{activePicture.title}}</h4>
+              <p>{{activePicture.decryption}}</p>
+            </div>
+            <div class="col s12 m6">
+              <img class="materialboxed" width="475" src="https://picsum.photos/id/10/400/400">
+            </div>
+          </div>
           <div>
             <div class="con-example-images">
               <vs-images :hover="hover">
@@ -108,5 +116,7 @@ export default {
 </script>
 
 <style scoped>
-
+.modal{
+  max-height: 85%;
+}
 </style>

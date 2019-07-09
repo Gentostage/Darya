@@ -11,7 +11,7 @@
             </a>
           </div>
           <div class="col s6 el_head">
-            <a target="_blank" rel="noopener noreferrer" href="https://vk.com/dashkausova">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/daryausova_alex/">
                 <img :src="`/static/ico/instagram.svg`" width="120" height="120" >
              </a>
           </div>
@@ -26,13 +26,13 @@
             </div>
           </div>
         </div>
-        <div class="col s12 m4">
+        <div class="col s12 m2">
           <div class="col s6 el_head">
             <h4>Обо мне</h4>
           </div>
-          <div class="col s6 el_head">
-            <h4>Контакты</h4>
-          </div>
+        </div>
+        <div class="col s12 m2 ">
+             <img :src="`/static/img/dopey-pug-prints.webp`" width="120" height="120" >
         </div>
       </div>
 
