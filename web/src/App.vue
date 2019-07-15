@@ -16,7 +16,7 @@ export default {
 
 body{
   margin:0 auto;
-  /*background-image:url('/static/img/bg.webp');*/
+  background-image:url('/static/img/bg.webp');
   background-repeat:no-repeat;
   background-attachment:fixed;
   background-size: 100%;
@@ -44,7 +44,7 @@ body{
 
 @media only screen and (max-width: 600px)  {
   body{
-    /*background-image:url('/static/img/bg_rew.webp');*/
+    background-image:url('/static/img/bg_rew.webp');
     background-size: 100% 100%;
 
   }

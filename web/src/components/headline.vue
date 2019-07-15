@@ -67,6 +67,7 @@ export default {
 
 <style scoped>
   .head{
+    font-family: 'Cormorant Garamond', serif;
     height: 420px;
     background: #ffffff;
     margin: 0px;
