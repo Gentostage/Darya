@@ -2,10 +2,21 @@
   margin-right: 10%;
   margin-left: 10%;
 }
-.img_box {
-  margin: 10px 63px 10px 63px !important;
-}
 .card-image img{
-height: 300px;
-object-fit: cover;
+  height: 300px;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 600px)  {
+}
+
+@media only screen and (min-width: 600px)  {
+}
+
+@media only screen and (min-width: 992px)  {
+
+}
+
+@media only screen and (min-width: 1200px) {
+
 }

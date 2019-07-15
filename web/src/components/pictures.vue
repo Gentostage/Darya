@@ -11,7 +11,7 @@
           <div
             v-for="item in 10"
             v-bind:key="item"
-            class="col s3 img_box"
+            class="col s12 m4 l3 img_box"
           >
             <a @click="omModal(item)"  class="modal-trigger" data-target="modal1">
               <div class="card">
@@ -43,7 +43,7 @@
               <p>{{activePicture.decryption}}</p>
             </div>
             <div class="col s12 m6">
-              <img class="materialboxed" width="475" src="https://picsum.photos/id/10/400/400">
+              <img class="materialboxed" width="100%" src="https://picsum.photos/id/10/400/400">
             </div>
           </div>
           <div>

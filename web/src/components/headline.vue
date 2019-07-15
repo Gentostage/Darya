@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="col s12 m3">
-             <img :src="`/static/img/dopey-pug-prints.webp`" width="300" height="300" >
+<!--             <img :src="`/static/img/dopey-pug-prints.webp`" width="300" height="300">-->
         </div>
       </div>
 
