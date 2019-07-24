@@ -7,5 +7,6 @@ app_name = "pict"
 
 urlpatterns = [
     path('works/', WorksView.as_view()),
-    path('works/<int:pk>', SingleWorksView.as_view()),
+    path('works/<int:id>', SingleWorksView.as_view()),
+    # path('auth/', views.obtain_auth_token),
 ]

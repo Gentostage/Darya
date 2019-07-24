@@ -1,14 +1,10 @@
-from django.db import models
-
 # Create your models here.
 from django.db import models
-
 
 
 class Works(models.Model):
     name = models.CharField(max_length=200, verbose_name=u"Название")
     descriptions = models.TextField(max_length=500, verbose_name=u"Описание")
-
 
     class Meta:
         verbose_name = u"Работа"
@@ -26,4 +22,3 @@ class Pictures(models.Model):
     class Meta:
         verbose_name = u"Картина"
         verbose_name_plural = u"Картины"
-
