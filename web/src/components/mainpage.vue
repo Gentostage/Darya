@@ -1,20 +1,18 @@
 <template>
   <div>
-    <div id="scroll-area">
-      <smooth-scrollbar>
-        <div class="example-content">
-          <router-view name="head"/>
-          <router-view name="pic"/>
-          <router-view name="mod"/>
-        </div>
-      </smooth-scrollbar>
-    </div>
+    <headline></headline>
+    <pictures></pictures>
+    <slot></slot>
   </div>
 </template>
 
 <script>
+import Headline from '@/components/headline'
+import Pictures from '@/components/pictures'
+
 export default {
-  name: 'mainpage'
+  name: 'mainpage',
+  components: {Headline, Pictures}
 }
 </script>
 

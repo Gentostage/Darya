@@ -13,7 +13,6 @@ export default {
 </script>
 
 <style>
-
 body{
   margin:0 auto;
   background-image:url('/static/img/bg.webp');
@@ -22,6 +21,7 @@ body{
   background-size: 100%;
   z-index: -1;
   scroll-behavior: smooth !important;
+
 }
 
 ::-webkit-scrollbar {

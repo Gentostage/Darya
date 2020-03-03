@@ -5,6 +5,8 @@ from django.db import models
 class Works(models.Model):
     name = models.CharField(max_length=200, verbose_name=u"Название")
     descriptions = models.TextField(max_length=500, verbose_name=u"Описание")
+    mainPic = models.ImageField(upload_to='mPic', height_field=None, width_field=None, max_length=100,
+                                verbose_name=u"Картинка", default='')
 
     class Meta:
         verbose_name = u"Работа"

@@ -35,6 +35,5 @@ class SingleWorksView(APIView):
 
 
 class AuthApi(APIView):
-
     def get(self):
         return Response('ok')
