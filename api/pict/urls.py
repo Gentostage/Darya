@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import WorksView, SingleWorksView
+from rest_framework.authtoken import views
 
 
 app_name = "pict"
@@ -8,5 +9,5 @@ app_name = "pict"
 urlpatterns = [
     path('works/', WorksView.as_view()),
     path('works/<int:id>', SingleWorksView.as_view()),
-    # path('auth/', views.obtain_auth_token),
+    path('auth/', views.obtain_auth_token),
 ]

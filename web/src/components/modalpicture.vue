@@ -8,8 +8,8 @@
               <h4>{{activePicture.title}}</h4>
               <p>{{activePicture.decryption}}</p>
             </div>
-            <div class="col s12 m6">
-              <img class="materialboxed" width="100%" src="https://picsum.photos/id/10/400/400">
+            <div class="col s12 m6" v-if="sizePict">
+              <img class="materialboxed" width="100%" :src="sizePict">
             </div>
           </div>
           <div>
@@ -40,7 +40,8 @@ export default {
     return {
       instance: null,
       activePicture: [],
-      hover: 'blur'
+      hover: 'blur',
+      sizePict: ''
     }
   },
   mounted () {
@@ -57,18 +58,23 @@ export default {
   },
   created () {
     const id = this.$route.params.id
-    this.$http.get('/' + id)
-    this.activePicture = {
-      title: 'Заголовок',
-      decryption: 'Описание',
-      content: id,
-      listimage: []
-    }
-    for (var i = 0; i < 9; i++) {
-      this.activePicture.listimage.push({
-        src: 'https://picsum.photos/id/1' + id + i + '/800/800'
+    var t = this
+    this.$http.get('/api/works/' + id)
+      .then(function (response) {
+        const work = response.data.data.work
+        t.activePicture = {
+          title: work[0].name,
+          decryption: work[0].descriptions,
+          content: work[0].id,
+          listimage: []
+        }
+        t.sizePict = process.env.VUE_APP_BASE_URL + work[0].picture[0].pic
+        work[0].picture.forEach((data) => {
+          t.activePicture.listimage.push({
+            src: process.env.VUE_APP_BASE_URL + data.pic
+          })
+        })
       })
-    }
   },
   methods: {
     setImnage (id) {

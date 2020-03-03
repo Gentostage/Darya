@@ -9,18 +9,18 @@
       <div class="content">
         <div class="row">
           <div
-            v-for="item in 10"
-            v-bind:key="item"
+            v-for="(item, index) in Picture"
+            v-bind:key="index"
             class="col s12 m4 l3 img_box"
           >
-            <a @click="omModal(item)">
+            <a @click="omModal(item.id)">
               <div class="card">
                 <div class="col s12 center-align">
-                  <h6>Заголовок</h6>
+                  <h6>{{item.title}}</h6>
                 </div>
                 <div class="">
                   <div class="card-image">
-                    <img :src="`https://picsum.photos/id/10${item}/800/800`">
+                    <img :src="item.mainPic">
                     <!--                    <span class="card-title">Краткое описание </span>-->
                   </div>
                   <div class="card-content">
@@ -43,14 +43,26 @@ export default {
   name: 'pictures',
   data () {
     return {
-
+      Picture: []
     }
   },
-  mounted () {
-
+  created () {
+    var t = this
+    this.$http.get('/api/works/')
+      .then(function (response) {
+        const works = response.data.data.works
+        works.forEach((data) => {
+          t.Picture.push({
+            title: data.name,
+            id: data.id,
+            mainPic: process.env.VUE_APP_BASE_URL + data.mainPic
+          })
+        })
+      })
   },
   methods: {
     omModal (id) {
+      console.log(id)
       this.$router.push('/picture/' + id)
     }
   }

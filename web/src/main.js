@@ -13,7 +13,7 @@ import 'vuesax/dist/vuesax.css'
 import Axios from 'axios'
 
 const client = Axios.create({
-  baseURL: process.env.VUE_APP_BASEURL
+  baseURL: process.env.VUE_APP_BASE_URL
 })
 
 Vue.prototype.$http = client

@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Works
-from .serializers import (WorksSerializer, WorksPOSTSerializer)
+from .serializers import (WorksSerializer, WorksPOSTSerializer, SingleWorksSerializer)
 
 
 class WorksView(APIView):
@@ -28,9 +28,11 @@ class WorksView(APIView):
 
 
 class SingleWorksView(APIView):
+    permission_classes = [AllowAny, ]
+
     def get(self, request, id):
         queryset = Works.objects.filter(id=id)
-        serializer = WorksSerializer(queryset, many=True)
+        serializer = SingleWorksSerializer(queryset, many=True)
         return Response({'work': serializer.data})
 
 

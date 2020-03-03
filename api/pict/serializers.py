@@ -9,10 +9,15 @@ class PicturesSerializer(serializers.ModelSerializer):
 
 
 class WorksSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Works
+        fields = ['id', 'mainPic', 'name']
+
+class SingleWorksSerializer(serializers.ModelSerializer):
     picture = PicturesSerializer(many=True, read_only=True)
     class Meta:
         model = Works
-        fields = ['id', 'name', 'descriptions', 'picture']
+        fields = ['id', 'mainPic', 'name', 'descriptions', 'picture']
 
 
 class WorksPOSTSerializer(serializers.ModelSerializer):
