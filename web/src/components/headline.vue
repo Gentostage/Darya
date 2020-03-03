@@ -7,12 +7,12 @@
         <div class="col s12 l5">
           <div class="col s6 el_head">
             <a target="_blank" rel="noopener noreferrer" href="https://vk.com/dashkausova">
-              <img  :src="`/static/ico/vk.svg`"  width="120" height="120" >
+              <img  src="../assets/ico/vk.svg"  width="120" height="120" >
             </a>
           </div>
           <div class="col s6 el_head">
             <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/daryausova_alex/">
-                <img :src="`/static/ico/instagram.svg`" width="120" height="120" >
+                <img src="../assets/ico/instagram.svg" width="120" height="120" >
              </a>
           </div>
         </div>
@@ -38,7 +38,7 @@
 
     </div>
     <div class="parallax-container">
-      <div class="parallax"><img :src="'/static/img/par.webp'"></div>
+      <div class="parallax"><img src="../assets/img/par.webp"></div>
     </div>
   </div>
 </template>
@@ -56,11 +56,9 @@ export default {
     }
   },
   mounted () {
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.parallax')
-      // eslint-disable-next-line no-undef
-      this.instances = M.Parallax.init(elems)
-    })
+    const elems = document.querySelectorAll('.parallax')
+    // eslint-disable-next-line no-undef
+    this.instances = M.Parallax.init(elems)
   }
 }
 </script>

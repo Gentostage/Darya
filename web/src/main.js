@@ -1,15 +1,27 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue'
 import router from './router'
 
+import 'material-icons/iconfont/material-icons.css'
+import 'materialize-css'
+import 'materialize-css/dist/css/materialize.min.css'
+import './assets/css/picture.css'
+
+import Vuesax from 'vuesax'
+import 'vuesax/dist/vuesax.css'
+
+import Axios from 'axios'
+
+const client = Axios.create({
+  baseURL: process.env.VUE_APP_BASEURL
+})
+
+Vue.prototype.$http = client
+
+Vue.use(Vuesax)
 Vue.config.productionTip = false
 
-// eslint-disable-next-line no-new
 new Vue({
-  el: '#app',
   router,
-  components: { App },
-  template: '<App/>'
-})
+  render: h => h(App)
+}).$mount('#app')

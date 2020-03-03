@@ -32,10 +32,10 @@
 </template>
 
 <script>
-import MainSlot from './mainpage'
+import MainSlot from '../views/mainpage'
 export default {
   name: 'modalpicture',
-  components: {MainSlot},
+  components: { MainSlot },
   data () {
     return {
       instance: null,
@@ -44,13 +44,20 @@ export default {
     }
   },
   mounted () {
-    var Modalelem = document.querySelector('.modal')
+    const Modalelem = document.querySelector('.modal')
+    const t = this
     // eslint-disable-next-line no-undef
-    this.instance = M.Modal.init(Modalelem, {})
+    this.instance = M.Modal.init(Modalelem, {
+      onCloseEnd () {
+        t.$router.push('/')
+      }
+    })
+
     this.instance.open()
   },
   created () {
-    let id = this.$route.params.id
+    const id = this.$route.params.id
+    this.$http.get('/' + id)
     this.activePicture = {
       title: 'Заголовок',
       decryption: 'Описание',
@@ -66,6 +73,9 @@ export default {
   methods: {
     setImnage (id) {
       console.log(id)
+    },
+    getImage (id) {
+      this.$http.get('/' + id)
     }
   }
 }

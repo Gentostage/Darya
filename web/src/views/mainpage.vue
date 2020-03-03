@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import Headline from '@/components/headline'
-import Pictures from '@/components/pictures'
+import Headline from '../components/headline'
+import Pictures from '../components/pictures'
 
 export default {
   name: 'mainpage',
-  components: {Headline, Pictures}
+  components: { Headline, Pictures }
 }
 </script>
 

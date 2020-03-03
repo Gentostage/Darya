@@ -1,31 +1,32 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import modalpicture from '@/components/modalpicture'
-import mainpage from '@/components/mainpage'
+import VueRouter from 'vue-router'
+import mainpage from '../views/mainpage'
+import modalpicture from '../components/modalpicture'
 
-import Vuesax from 'vuesax'
-import 'vuesax/dist/vuesax.css'
+Vue.use(VueRouter)
 
-import 'material-icons/iconfont/material-icons.css'
-import 'materialize-css'
-import 'materialize-css/dist/css/materialize.min.css'
-import '@/assets/css/picture.css'
+const routes = [
+  {
+    path: '/',
+    name: 'mainpage',
+    component: mainpage,
+    meta: { title: 'Усова Дарья' }
+  },
+  {
+    path: '/picture/:id',
+    component: modalpicture,
+    meta: { title: 'Усова Дарья' }
+  }
+]
 
-Vue.use(Router)
-Vue.use(Vuesax)
-
-export default new Router({
+const router = new VueRouter({
   mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'mainpage',
-      component: mainpage
-    },
-    {
-      path: '/picture/:id',
-      component: modalpicture
-    }
-
-  ]
+  base: process.env.BASE_URL,
+  routes
 })
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
+})
+
+export default router
