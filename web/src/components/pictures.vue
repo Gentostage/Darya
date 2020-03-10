@@ -35,6 +35,9 @@
     </div>
     <div>
     </div>
+    <div v-if="showModal" >
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -43,7 +46,16 @@ export default {
   name: 'pictures',
   data () {
     return {
+      showModal: false,
       Picture: []
+    }
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      handler: function (newVal, oldVal) {
+        this.showModal = newVal.meta && newVal.meta.showModal
+      }
     }
   },
   created () {

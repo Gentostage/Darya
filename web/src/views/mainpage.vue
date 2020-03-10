@@ -2,7 +2,6 @@
   <div>
     <headline></headline>
     <pictures></pictures>
-    <slot></slot>
   </div>
 </template>
 

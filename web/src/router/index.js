@@ -10,12 +10,17 @@ const routes = [
     path: '/',
     name: 'mainpage',
     component: mainpage,
-    meta: { title: 'Усова Дарья' }
-  },
-  {
-    path: '/picture/:id',
-    component: modalpicture,
-    meta: { title: 'Усова Дарья' }
+    meta: { title: 'Усова Дарья' },
+    children: [
+      {
+        meta: {
+          showModal: true
+        },
+        path: 'picture/:id',
+        component: modalpicture,
+        props: true
+      }
+    ]
   }
 ]
 

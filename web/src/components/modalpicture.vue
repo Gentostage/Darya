@@ -1,41 +1,39 @@
 <template>
-  <MainSlot>
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <div class="row">
+  <div>
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <div class="row">
 
-            <div class="col s12 m6">
-              <h4>{{activePicture.title}}</h4>
-              <p>{{activePicture.decryption}}</p>
-            </div>
-            <div class="col s12 m6" v-if="sizePict">
-              <img class="materialboxed" width="100%" :src="sizePict">
-            </div>
+          <div class="col s12 m6">
+            <h4>{{activePicture.title}}</h4>
+            <p>{{activePicture.decryption}}</p>
           </div>
-          <div>
-            <div class="con-example-images">
-              <vs-images :hover="hover">
-                <vs-image @click="setImnage(index)"
-                          :key="index"
-                          :src="image.src"
-                          v-for="(image, index) in activePicture.listimage
-                "/>
-              </vs-images>
-            </div>
+          <div class="col s12 m6" v-if="sizePict">
+            <img class="materialboxed" width="100%" :src="sizePict">
           </div>
         </div>
-        <div class="modal-footer">
-          <a class="modal-close waves-effect waves-green btn-flat">Закрыть</a>
+        <div>
+          <div class="con-example-images">
+            <vs-images :hover="hover">
+              <vs-image @click="setImnage(index)"
+                        :key="index"
+                        :src="image.src"
+                        v-for="(image, index) in activePicture.listimage
+              "/>
+            </vs-images>
+          </div>
         </div>
       </div>
-  </MainSlot>
+      <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn-flat">Закрыть</a>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import MainSlot from '../views/mainpage'
 export default {
   name: 'modalpicture',
-  components: { MainSlot },
   data () {
     return {
       instance: null,
@@ -50,7 +48,7 @@ export default {
     // eslint-disable-next-line no-undef
     this.instance = M.Modal.init(Modalelem, {
       onCloseEnd () {
-        t.$router.push('/')
+        t.$router.push('../')
       }
     })
 
@@ -58,6 +56,7 @@ export default {
   },
   created () {
     const id = this.$route.params.id
+    console.log(id)
     var t = this
     this.$http.get('/api/works/' + id)
       .then(function (response) {
