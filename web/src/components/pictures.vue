@@ -83,7 +83,5 @@ export default {
 </script>
 
 <style scoped>
-.modal{
-  max-height: 85%;
-}
+
 </style>

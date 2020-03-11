@@ -17,6 +17,7 @@ class PicturesShotsInline(admin.TabularInline):
 
 @admin.register(Works)
 class WorksAdmin(admin.ModelAdmin):
+    save_as = True
     inlines = [PicturesShotsInline, ]
     readonly_fields = ("main_image", )
 

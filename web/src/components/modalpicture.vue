@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="modal1" class="modal">
+    <div id="modal1" class="modal modal-fixed-footer">
       <div class="modal-content">
         <div class="row">
 
@@ -8,19 +8,14 @@
             <h4>{{activePicture.title}}</h4>
             <p>{{activePicture.decryption}}</p>
           </div>
-          <div class="col s12 m6" v-if="sizePict">
-            <img class="materialboxed" width="100%" :src="sizePict">
-          </div>
         </div>
-        <div>
-          <div class="con-example-images">
-            <vs-images :hover="hover">
-              <vs-image @click="setImnage(index)"
-                        :key="index"
-                        :src="image.src"
-                        v-for="(image, index) in activePicture.listimage
-              "/>
-            </vs-images>
+        <div class="row">
+          <div class="col s12 m6 xl3"
+               v-for="(image, index) in activePicture.listimage"
+               :key="index">
+            <img alt="" class="img-modal materialboxed"
+                 :src="image.src"
+                 />
           </div>
         </div>
       </div>
@@ -38,8 +33,7 @@ export default {
     return {
       instance: null,
       activePicture: [],
-      hover: 'blur',
-      sizePict: ''
+      hover: 'blur'
     }
   },
   mounted () {
@@ -87,5 +81,5 @@ export default {
 </script>
 
 <style scoped>
-
+@import "../assets/css/modalpicture.css";
 </style>

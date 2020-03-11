@@ -14,7 +14,8 @@ const routes = [
     children: [
       {
         meta: {
-          showModal: true
+          showModal: true,
+          title: 'Усова Дарья'
         },
         path: 'picture/:id',
         component: modalpicture,

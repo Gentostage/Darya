@@ -64,30 +64,6 @@ export default {
 </script>
 
 <style scoped>
-  .head{
-    font-family: 'Cormorant Garamond', serif;
-    background: #ffffff;
-    margin: 0px;
-  }
-
-  @media only screen and (max-width: 600px)  {
-  }
-  @media only screen and (min-width: 600px)  {
-    .el_head{
-      margin-top: 70px;
-      font-size: 50px;
-    }
-  }
-  @media only screen and (min-width: 992px) {
-    .head {
-      height: 450px;
-    }
-    .el_head {
-      margin-top: 130px;
-    }
-  }
-
-  @media only screen and (min-width: 1200px) {
-  }
+@import "../assets/css/headline.css";
 
 </style>
