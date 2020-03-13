@@ -11,7 +11,7 @@
           <div
             v-for="(item, index) in Picture"
             v-bind:key="index"
-            class="col s12 m4 l3 img_box"
+            class="col s12 m6 l6 xl3 img_box"
           >
             <a @click="omModal(item.id)">
               <div class="card">
@@ -23,9 +23,9 @@
                     <img :src="item.mainPic">
                     <!--                    <span class="card-title">Краткое описание </span>-->
                   </div>
-                  <div class="card-content">
-                    <span class="card"></span>
-                  </div>
+<!--                  <div class="card-content">-->
+<!--                    <span class="card"></span>-->
+<!--                  </div>-->
                 </div>
               </div>
             </a>
@@ -74,7 +74,6 @@ export default {
   },
   methods: {
     omModal (id) {
-      console.log(id)
       this.$router.push('/picture/' + id)
     }
   }

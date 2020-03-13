@@ -5,16 +5,16 @@
         <div class="row">
 
           <div class="col s12 m6">
-            <h4>{{activePicture.title}}</h4>
-            <p>{{activePicture.decryption}}</p>
+            <h4>{{activePicture.name}}</h4>
+            <p>{{activePicture.descriptions}}</p>
           </div>
         </div>
         <div class="row">
-          <div class="col s12 m6 xl3"
-               v-for="(image, index) in activePicture.listimage"
+          <div class="col s12 card-img-modal"
+               v-for="(image, index) in activePicture.picture"
                :key="index">
-            <img alt="" class="img-modal materialboxed"
-                 :src="image.src"
+            <img alt="" class="img-modal"
+                 :src="url + image.pic"
                  />
           </div>
         </div>
@@ -33,10 +33,10 @@ export default {
     return {
       instance: null,
       activePicture: [],
-      hover: 'blur'
+      url: process.env.VUE_APP_BASE_URL
     }
   },
-  mounted () {
+  async mounted () {
     const Modalelem = document.querySelector('.modal')
     const t = this
     // eslint-disable-next-line no-undef
@@ -47,34 +47,15 @@ export default {
     })
 
     this.instance.open()
-  },
-  created () {
+
     const id = this.$route.params.id
-    console.log(id)
-    var t = this
-    this.$http.get('/api/works/' + id)
-      .then(function (response) {
-        const work = response.data.data.work
-        t.activePicture = {
-          title: work[0].name,
-          decryption: work[0].descriptions,
-          content: work[0].id,
-          listimage: []
-        }
-        t.sizePict = process.env.VUE_APP_BASE_URL + work[0].picture[0].pic
-        work[0].picture.forEach((data) => {
-          t.activePicture.listimage.push({
-            src: process.env.VUE_APP_BASE_URL + data.pic
-          })
-        })
-      })
+    await this.fetchPict(id)
   },
   methods: {
-    setImnage (id) {
-      console.log(id)
-    },
-    getImage (id) {
-      this.$http.get('/' + id)
+    async fetchPict (id) {
+      const response = await this.$http.get('/api/works/' + id)
+      console.log(response.data.data.work[0])
+      this.activePicture = response.data.data.work[0]
     }
   }
 }
