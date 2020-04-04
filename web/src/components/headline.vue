@@ -4,6 +4,10 @@
       <div class="col s12 center-align">
         <h3>Портфолио</h3>
         <hr>
+        <div class="coll s12">
+          <h3>Усова Дарья</h3>
+          <br>
+        </div>
         <div class="col s12 l5">
           <div class="col s6 el_head">
             <a target="_blank" rel="noopener noreferrer" href="https://vk.com/dashkausova">
@@ -17,8 +21,6 @@
           </div>
         </div>
         <div class="col s12 l2">
-          <h3>Усова Дарья</h3>
-          <br>
           <div class="col s12">
             <div class="">
               <img src="https://pp.userapi.com/c848532/v848532019/17fd38/QphjfSlwC3I.jpg?ava=1" alt=""
@@ -26,13 +28,12 @@
             </div>
           </div>
         </div>
-        <div class="col s12 l2">
-          <div class="col s12 el_head">
-            <h3>Обо мне</h3>
-          </div>
-        </div>
         <div class="col s12 l3">
-<!--             <img :src="`/static/img/dopey-pug-prints.webp`" width="300" height="300">-->
+          <div class="col s12 el_head">
+            <a href="">
+              <h3 class="about">Обо мне</h3>
+            </a>
+          </div>
         </div>
       </div>
 
