@@ -3,9 +3,11 @@ from .models import Works, Pictures
 
 
 class PicturesSerializer(serializers.ModelSerializer):
+    mPic = serializers.ReadOnlyField(source='mPic.url')
+
     class Meta:
         model = Pictures
-        fields = ['pic']
+        fields = ['pic', 'mPic']
 
 
 class WorksSerializer(serializers.ModelSerializer):
