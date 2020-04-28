@@ -36,6 +36,7 @@ uritemplate = "==3.0.0"
 urllib3 = "==1.25.3"
 gunicorn = "*"
 psycopg2-binary = "*"
+django-imagekit = "*"
 
 [dev-packages]
 

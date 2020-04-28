@@ -20,7 +20,12 @@
                 </div>
                 <div class="">
                   <div class="card-image">
-                    <img :src="item.mainPic">
+                    <picture>
+                      <source :srcset="item.webCompPic" >
+                      <source :srcset="item.mCompPic" >
+                      <img :srcset="item.mainPic" alt=""/>
+                    </picture>
+<!--                    <img :src="item.mainPic">-->
                     <!--                    <span class="card-title">Краткое описание </span>-->
                   </div>
 <!--                  <div class="card-content">-->
@@ -67,7 +72,9 @@ export default {
           t.Picture.push({
             title: data.name,
             id: data.id,
-            mainPic: process.env.VUE_APP_BASE_URL + data.mainPic
+            mainPic: process.env.VUE_APP_BASE_URL + data.mainPic,
+            mCompPic: process.env.VUE_APP_BASE_URL + data.mCompPic,
+            webCompPic: process.env.VUE_APP_BASE_URL + data.webCompPic
           })
         })
       })

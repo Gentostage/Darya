@@ -13,9 +13,14 @@
           <div class="col s12 card-img-modal"
                v-for="(image, index) in activePicture.picture"
                :key="index">
-            <img alt="" class="img-modal"
-                 :src="url + image.pic"
-                 />
+            <picture >
+              <source :srcset="url + image.mWebPic" media="(max-width: 1199px)">
+              <source :srcset="url + image.webPic" media="(min-width: 1199px)">
+              <source :srcset="url + image.mPic" media="(max-width: 1199px)" >
+              <source :srcset="url + image.compPic" media="(min-width: 1199px)">
+              <img :srcset="url + image.pic" alt="" class="materialboxed img-modal"
+                   />
+            </picture>
           </div>
         </div>
       </div>
