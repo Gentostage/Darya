@@ -11,6 +11,18 @@ class Works(models.Model):
     mainPic = models.ImageField(upload_to='mPic', height_field=None, width_field=None, max_length=100,
                                 verbose_name=u"Главная картинка", default='')
 
+    mainCompressPic = ImageSpecField(source='mainPic',
+                          format='JPEG',
+                          options={'quality': 90},
+                          processors=[Adjust(contrast=1.2, sharpness=1.1),
+                                      ResizeToFill(389, 380)])
+
+    webMainCompressPic = ImageSpecField(source='mainPic',
+                            format='WEBP',
+                            options={'quality': 90},
+                            processors=[Adjust(contrast=1.2, sharpness=1.1),
+                                        ResizeToFill(389, 380)])
+
     class Meta:
         verbose_name = u"Работа"
         verbose_name_plural = u"Работы"
@@ -25,23 +37,29 @@ class Pictures(models.Model):
     pic = models.ImageField(upload_to='pic', height_field=None, width_field=None, max_length=100
                             , verbose_name=u"Картинка")
 
-    mPic = ImageSpecField(source='pic',
+    compressPic = ImageSpecField(source='pic',
+                                 format='JPEG',
+                                 options={'quality': 90},
+                                 processors=[Adjust(contrast=1.2, sharpness=1.1),
+                                             ResizeToFit(1000, 1000)])
+
+    mobileCompressPic = ImageSpecField(source='pic',
                           format='JPEG',
                           options={'quality': 90},
                           processors=[Adjust(contrast=1.2, sharpness=1.1),
-                                      ResizeToFill(50, 50)])
+                                      ResizeToFit(600, 600)])
 
     webPic = ImageSpecField(source='pic',
                             format='WEBP',
                             options={'quality': 90},
                             processors=[Adjust(contrast=1.2, sharpness=1.1),
-                                        ResizeToFit(300, 200)])
+                                        ResizeToFit(1000, 1000)])
 
-    mWebPic = ImageSpecField(source='pic',
+    mobileWebPic = ImageSpecField(source='pic',
                              format='WEBP',
                              options={'quality': 90},
                              processors=[Adjust(contrast=1.2, sharpness=1.1),
-                                         ResizeToFit(640, 480)])
+                                         ResizeToFit(600, 600)])
 
     class Meta:
         verbose_name = u"Картина"

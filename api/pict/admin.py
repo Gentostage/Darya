@@ -8,7 +8,6 @@ class PicturesShotsInline(admin.TabularInline):
     model = Pictures
     extra = 1
     readonly_fields = ("get_image",)
-    exclude = ['mPic', 'webPic', 'newWebPic']
     def get_image(self, obj):
         return mark_safe('<img src="%s" height="350">' % obj.pic.url)
 
