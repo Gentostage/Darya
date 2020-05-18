@@ -34,8 +34,3 @@ class SingleWorksView(APIView):
         queryset = Works.objects.filter(id=id)
         serializer = SingleWorksSerializer(queryset, many=True)
         return Response({'work': serializer.data})
-
-
-class AuthApi(APIView):
-    def get(self):
-        return Response('ok')

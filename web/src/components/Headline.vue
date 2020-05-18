@@ -47,10 +47,9 @@
 <script>
 
 export default {
-  name: 'headline',
+  name: 'Headline',
   data () {
     return {
-      msg: 'headline',
       activeItem: 0,
       search: '',
       instances: null

@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: 'pictures',
+  name: 'Pictures',
   data () {
     return {
       showModal: false,

@@ -1,7 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import mainpage from '../views/mainpage'
-import modalpicture from '../components/modalpicture'
+import store from '../store.js'
+
+import MainPage from '../views/MainPage'
+import ModalPicture from '../components/ModalPicture'
+import Profile from '../views/Profile.vue'
+import Login from '../components/Login'
 
 Vue.use(VueRouter)
 
@@ -9,7 +13,7 @@ const routes = [
   {
     path: '/',
     name: 'mainpage',
-    component: mainpage,
+    component: MainPage,
     meta: { title: 'Усова Дарья' },
     children: [
       {
@@ -18,10 +22,23 @@ const routes = [
           title: 'Усова Дарья'
         },
         path: 'picture/:id',
-        component: modalpicture,
+        component: ModalPicture,
         props: true
       }
     ]
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   }
 ]
 
@@ -32,6 +49,15 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    next('/login')
+  } else {
+    next()
+  }
   next()
 })
 

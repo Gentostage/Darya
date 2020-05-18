@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  name: 'modalpicture',
+  name: 'ModalPicture',
   data () {
     return {
       instance: null,

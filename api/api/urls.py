@@ -8,9 +8,9 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('pict.urls')),
-    # path('auth/', include('djoser.urls')),
-    # path('auth/', include('djoser.urls.authtoken')),
-    # path('auth/', include('djoser.urls.jwt')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls.jwt')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
