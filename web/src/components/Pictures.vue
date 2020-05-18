@@ -64,12 +64,12 @@ export default {
     }
   },
   created () {
-    var t = this
     this.$http.get('/api/works/')
-      .then(function (response) {
-        const works = response.data.data.works
-        works.forEach((data) => {
-          t.Picture.push({
+      .then((res) => {
+        const response = res.data.data.works
+        const works = []
+        response.forEach((data) => {
+          works.push({
             title: data.name,
             id: data.id,
             mainPic: process.env.VUE_APP_BASE_URL + data.mainPic,
@@ -77,6 +77,8 @@ export default {
             webCompPic: process.env.VUE_APP_BASE_URL + data.webCompPic
           })
         })
+        console.log(this)
+        this.Picture = works
       })
   },
   methods: {

@@ -20,7 +20,7 @@ class WorksSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Works
-        fields = ['id', 'mainPic', 'mCompPic', 'webCompPic', 'name']
+        fields = ['id', 'mainPic', 'mCompPic', 'webCompPic', 'name' ,'descriptions']
 
 class SingleWorksSerializer(serializers.ModelSerializer):
     picture = PicturesSerializer(many=True, read_only=True)

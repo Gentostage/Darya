@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="row ">
-      <div class="col s12 m6 offset-m3 xl4 offset-xl4 card-panel white login-box">
+      <div class="col s12 m6 offset-m3   xl4 offset-xl4 card-panel white login-box">
         <form class="login" @submit.prevent="login">
           <h1>Вход</h1>
           <div class="row">
