@@ -3,7 +3,7 @@
     <div class="row white">
       <div class="col s12"><h3>Редактирование</h3></div>
       <div class="input-field col s12">
-        <input id="name" type="text" class="validate" v-model="Work.name" placeholder="Моя первая работа ...">
+        <input id="name" type="text" v-model="Work.name" placeholder="Моя первая работа ...">
         <label for="name">Название</label>
       </div>
       <hr>
@@ -36,7 +36,7 @@ export default {
       url: process.env.VUE_APP_BASE_URL
     }
   },
-  created () {
+  mounted () {
     const id = this.$route.params.id
     this.fetchPict(id)
   },
@@ -44,7 +44,7 @@ export default {
     fetchPict (id) {
       this.$http.get('/api/works/' + id)
         .then(res => {
-          this.Work = res.data.data.work[0]
+          this.Work = res.data
         })
         .catch(err => console.log(err))
     },
@@ -52,7 +52,7 @@ export default {
       const form = new FormData()
       form.append('mainPic', e.target.files[0])
       this.$http.put(`/api/works/image/${this.Work.id}`, form)
-        .then(res => console.log(this.Work.mainPic = res.data.data.attributes.picture_url))
+        .then(res => console.log(this.Work.mainPic = res.data.attributes.picture_url))
     }
   }
 }

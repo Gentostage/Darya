@@ -59,7 +59,7 @@ export default {
   methods: {
     async fetchPict (id) {
       const response = await this.$http.get('/api/works/' + id)
-      this.activePicture = response.data.data.work[0]
+      this.activePicture = response.data
     }
   },
   beforeRouteLeave (to, from, next) {

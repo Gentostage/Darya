@@ -1,16 +1,16 @@
 <template>
-  <div class="content">
+  <div class="container">
     <div class="row ">
       <div class="col s12 m6 offset-m3   xl4 offset-xl4 card-panel white login-box">
         <form class="login" @submit.prevent="login">
           <h1>Вход</h1>
           <div class="row">
             <div class="input-field col s12">
-              <input id="login" type="text" v-model="username">
+              <input id="login" type="text"  class="validate" v-model="username">
               <label for="login">Логин</label>
             </div>
             <div class="input-field col s12">
-              <input id="password" type="password" v-model="password">
+              <input id="password" type="password"  class="validate" v-model="password">
               <label for="password">Логин</label>
             </div>
             <div class="class s12 center" v-if="errorMassage">
@@ -46,7 +46,7 @@ export default {
       const password = this.password
       this.$store.dispatch('login', { username, password })
         .then(() => this.$router.push('/profile'))
-        .catch((err) => { this.errorMassage = err.errors[0].detail })
+        .catch((err) => { this.errorMassage = err.non_field_errors[0] })
     },
     logout () {
       this.$store.dispatch('logout')

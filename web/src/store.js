@@ -37,14 +37,15 @@ export default new Vuex.Store({
         commit('auth_request')
         axios({ url: '/auth/token/login', data: user, method: 'POST' })
           .then(resp => {
-            const token = resp.data.data.attributes.auth_token
+            const token = resp.data.auth_token
+            console.log(token)
             localStorage.setItem('token', 'Token ' + token)
             axios.defaults.headers.common.Authorization = token
             commit('auth_success', token)
             resolve(resp)
           })
           .catch((err) => {
-            commit('auth_error', err.response.data.errors[0].detail)
+            commit('auth_error', err.response.data.non_field_errors[0])
             localStorage.removeItem('token')
             reject(err.response.data)
           })

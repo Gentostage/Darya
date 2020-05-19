@@ -66,7 +66,7 @@ export default {
   created () {
     this.$http.get('/api/works/')
       .then((res) => {
-        const response = res.data.data.works
+        const response = res.data
         const works = []
         response.forEach((data) => {
           works.push({

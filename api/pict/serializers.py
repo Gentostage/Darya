@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from rest_framework.fields import ImageField
 
 from .models import Works, Pictures
 
@@ -13,7 +12,7 @@ class PicturesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Pictures
-        fields = ['pic', 'mPic', 'compPic' ,'webPic', 'mWebPic']
+        exclude = ('id', )
 
 
 class WorksSerializer(serializers.ModelSerializer):
@@ -22,16 +21,17 @@ class WorksSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Works
-        fields = ['id', 'mainPic', 'mCompPic', 'webCompPic', 'name' ,'descriptions']
+        fields = '__all__'
 
 class SingleWorksSerializer(serializers.ModelSerializer):
     picture = PicturesSerializer(many=True, read_only=True)
+    mainPic = serializers.ReadOnlyField(source='mainPic.url')
     mCompPic = serializers.ReadOnlyField(source='mainCompressPic.url')
     webCompPic = serializers.ReadOnlyField(source='webMainCompressPic.url')
 
     class Meta:
         model = Works
-        fields = ['id', 'mainPic', 'mCompPic', 'webCompPic', 'name', 'descriptions', 'picture']
+        fields = '__all__'
 
 class UpdateWorkImageSerializer(serializers.ModelSerializer):
     picture_url = serializers.SerializerMethodField()
