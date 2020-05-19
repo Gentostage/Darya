@@ -6,6 +6,7 @@ import MainPage from '../views/MainPage'
 import ModalPicture from '../components/ModalPicture'
 import Profile from '../views/Profile.vue'
 import Login from '../components/Login'
+import ProfileCard from '../views/ProfileCard'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,7 @@ const routes = [
           title: 'Усова Дарья'
         },
         path: 'picture/:id',
+        name: 'modal',
         component: ModalPicture,
         props: true
       }
@@ -31,6 +33,14 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: Profile,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/profile/card/:id',
+    name: 'profileCard',
+    component: ProfileCard,
     meta: {
       requiresAuth: true
     }

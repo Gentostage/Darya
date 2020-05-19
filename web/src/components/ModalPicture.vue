@@ -18,7 +18,7 @@
               <source :srcset="url + image.webPic" media="(min-width: 1199px)">
               <source :srcset="url + image.mPic" media="(max-width: 1199px)" >
               <source :srcset="url + image.compPic" media="(min-width: 1199px)">
-              <img :srcset="url + image.pic" alt="" class="materialboxed img-modal"
+              <img :srcset="url + image.pic" alt="" class="img-modal"
                    />
             </picture>
           </div>
@@ -43,11 +43,11 @@ export default {
   },
   async mounted () {
     const Modalelem = document.querySelector('.modal')
-    const t = this
+    const router = this.$router
     // eslint-disable-next-line no-undef
     this.instance = M.Modal.init(Modalelem, {
       onCloseEnd () {
-        t.$router.push('../')
+        router.push('../')
       }
     })
 

@@ -26,5 +26,51 @@ export default {
 </script>
 
 <style>
-@import 'assets/css/App.css';
+body {
+    margin: 0 auto;
+    background-image: url('assets/img/bg.webp');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% auto;
+    z-index: -1;
+    scroll-behavior: smooth !important;
+
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    display: block;
+}
+
+::-webkit-scrollbar-track {
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);*/
+    border-radius: 2px;
+    background: #00e43d00;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);*/
+    background: #9ba5ff;
+}
+
+@media (min-width: 1200px) {}
+@media (min-width: 992px) and (max-width: 1199px) {
+    body {
+        background-size: auto 100%;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    body {
+        background-size: auto 100%;
+    }
+}
+@media (max-width: 767px) {
+    body {
+        background-size: auto 100%;
+    }
+}
+@media (max-width: 480px) {}
+@media (max-width: 650px) {}
 </style>

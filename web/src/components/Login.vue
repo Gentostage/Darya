@@ -41,14 +41,14 @@ export default {
     }
   },
   methods: {
-    login: function () {
+    login () {
       const username = this.username
       const password = this.password
       this.$store.dispatch('login', { username, password })
         .then(() => this.$router.push('/profile'))
         .catch((err) => { this.errorMassage = err.errors[0].detail })
     },
-    logout: function () {
+    logout () {
       this.$store.dispatch('logout')
         .then(() => {
           this.$router.push('/login')

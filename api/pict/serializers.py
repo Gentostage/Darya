@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework.fields import ImageField
+
 from .models import Works, Pictures
 
 
@@ -31,8 +33,17 @@ class SingleWorksSerializer(serializers.ModelSerializer):
         model = Works
         fields = ['id', 'mainPic', 'mCompPic', 'webCompPic', 'name', 'descriptions', 'picture']
 
-
-class WorksPOSTSerializer(serializers.ModelSerializer):
+class UpdateWorkImageSerializer(serializers.ModelSerializer):
+    picture_url = serializers.SerializerMethodField()
     class Meta:
         model = Works
-        fields = ['name', 'descriptions']
+        fields = ['mainPic', 'picture_url']
+
+    def update(self, instance, validated_data):
+        instance.mainPic = validated_data.get('mainPic')
+        instance.save()
+        return instance
+
+    def get_picture_url(self, Works):
+        photo_url = Works.mainPic.url
+        return photo_url
