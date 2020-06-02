@@ -1,15 +1,16 @@
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.response import Response
 from rest_framework import generics
-from rest_framework.views import APIView
 
 from .models import Works
 from .serializers import (WorksSerializer, SingleWorksSerializer, UpdateWorkImageSerializer)
 
 
-class WorksListView(generics.ListAPIView):
-    queryset = Works.objects.all()
+class WorksListView(generics.ListCreateAPIView):
+    queryset = Works.objects.all().order_by('-id')
     serializer_class = WorksSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
 class WorksDetailView(generics.RetrieveAPIView):
     queryset = Works.objects.all()

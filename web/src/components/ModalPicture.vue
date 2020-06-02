@@ -5,13 +5,13 @@
         <div class="row">
 
           <div class="col s12 m6">
-            <h4>{{activePicture.name}}</h4>
-            <p>{{activePicture.descriptions}}</p>
+            <h4>{{work.name}}</h4>
+            <p>{{work.descriptions}}</p>
           </div>
         </div>
         <div class="row">
           <div class="col s12 card-img-modal"
-               v-for="(image, index) in activePicture.picture"
+               v-for="(image, index) in work.picture"
                :key="index">
             <picture >
               <source :srcset="url + image.mWebPic" media="(max-width: 1199px)">
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'ModalPicture',
   data () {
@@ -54,13 +55,17 @@ export default {
     this.instance.open()
 
     const id = this.$route.params.id
-    await this.fetchPict(id)
+    this.getWorkById(id)
   },
   methods: {
-    async fetchPict (id) {
-      const response = await this.$http.get('/api/works/' + id)
-      this.activePicture = response.data
-    }
+    ...mapActions([
+      'getWorkById'
+    ])
+  },
+  computed: {
+    ...mapState([
+      'work'
+    ])
   },
   beforeRouteLeave (to, from, next) {
     console.log(this.instance.isOpen)

@@ -4,7 +4,12 @@
     <div class="row">
       <div class="col s12">
         <div class="profile-image-list">
-          <div v-for="(item, index) in workList" :key="index" class='col s12 m6 xl4' @click="openCard(item.id)">
+          <div  class='col s12 m6 xl4'>
+            <div class="profile-card-image-new white center" @click="createNew">
+              <h3 class="blue-text">Создать</h3>
+            </div>
+          </div>
+          <div v-for="(item, index) in works" :key="index" class='col s12 m6 xl4' @click="openCard(item.id)">
             <div class="profile-card-image white">
               <div class="col s4 profile-image">
                 <picture>
@@ -26,35 +31,35 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'Profile',
   data () {
     return {
-      workList: []
     }
   },
+  computed: {
+    ...mapState([
+      'works'
+    ])
+  },
   methods: {
+    ...mapActions([
+      'getWorks',
+      'createWork'
+    ]),
     openCard (id) {
       this.$router.push({ path: `/profile/card/${id}` })
+    },
+    createNew () {
+      this.createWork()
+        .then(response => {
+          this.$router.push(`/profile/card/${response}`)
+        })
     }
   },
   created () {
-    this.$http.get('/api/works/')
-      .then((res) => {
-        const response = res.data.works
-        const works = []
-        response.forEach((data) => {
-          works.push({
-            title: data.name,
-            id: data.id,
-            mainPic: process.env.VUE_APP_BASE_URL + data.mainPic,
-            mCompPic: process.env.VUE_APP_BASE_URL + data.mCompPic,
-            webCompPic: process.env.VUE_APP_BASE_URL + data.webCompPic,
-            description: data.descriptions
-          })
-        })
-        this.workList = works
-      })
+    this.getWorks()
   }
 }
 </script>
@@ -93,5 +98,17 @@ export default {
     .profile-card-image:hover{
       cursor: pointer;
     }
+    .profile-card-image-new{
+      padding: 2px 2px 20px;
+      border-radius: 5px;
+      margin-bottom: 5px;
+      h5 {
+        margin: 5px;
+      }
+    }
+    .profile-card-image-new:hover{
+      cursor: pointer;
+    }
+
   }
 </style>

@@ -9,7 +9,7 @@
       <div class="content">
         <div class="row">
           <div
-            v-for="(item, index) in Picture"
+            v-for="(item, index) in works"
             v-bind:key="index"
             class="col s12 m6 l6 xl3 img_box"
           >
@@ -47,13 +47,18 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'Pictures',
   data () {
     return {
-      showModal: false,
-      Picture: []
+      showModal: false
     }
+  },
+  computed: {
+    ...mapState([
+      'works'
+    ])
   },
   watch: {
     $route: {
@@ -64,24 +69,12 @@ export default {
     }
   },
   created () {
-    this.$http.get('/api/works/')
-      .then((res) => {
-        const response = res.data
-        const works = []
-        response.forEach((data) => {
-          works.push({
-            title: data.name,
-            id: data.id,
-            mainPic: process.env.VUE_APP_BASE_URL + data.mainPic,
-            mCompPic: process.env.VUE_APP_BASE_URL + data.mCompPic,
-            webCompPic: process.env.VUE_APP_BASE_URL + data.webCompPic
-          })
-        })
-        console.log(this)
-        this.Picture = works
-      })
+    this.getWorks()
   },
   methods: {
+    ...mapActions([
+      'getWorks'
+    ]),
     omModal (id) {
       this.$router.push('/picture/' + id)
     }
