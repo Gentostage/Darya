@@ -138,6 +138,10 @@ export default new Vuex.Store({
           .then(res => { resolve(res.data.picture_url) })
           .catch(res => { reject(res) })
       })
+    },
+    deleteImage ({ commit }, id) {
+      axios.delete(`/api/picture/${id}`)
+        .catch(resp => { console.log(resp) })
     }
   },
   getters: {

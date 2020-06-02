@@ -3,8 +3,12 @@ from rest_framework import serializers
 from .models import Works, Pictures
 
 
-class PicturesSerializer(serializers.ModelSerializer):
+class DestroyCreateImageSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model= Pictures
+
+class PicturesSerializer(serializers.ModelSerializer):
     mPic = serializers.ReadOnlyField(source='mobileCompressPic.url')
     compPic = serializers.ReadOnlyField(source='compressPic.url')
     webPic = serializers.ReadOnlyField(source='webPic.url')
@@ -12,7 +16,7 @@ class PicturesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Pictures
-        exclude = ('id', )
+        exclude = ('work', )
 
 
 class WorksSerializer(serializers.ModelSerializer):

@@ -21,13 +21,19 @@
       </div>
       <h4 class="center">Работы</h4>
       <div v-for="(item, index) in work.picture" :key="index" class="col s12 ">
-        <img :src="url+item.mPic" alt="" width="100%">
+        <div class="card-image">
+          <img :src="url+item.mPic" alt="" width="100%">
+          <div class="card-image-button" @click="deleteImageCard(index)">
+            <h5>Удалить</h5>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 import { mapActions, mapState } from 'vuex'
 export default {
   name: 'ProfileCard',
@@ -38,6 +44,8 @@ export default {
     }
   },
   mounted () {
+    // eslint-disable-next-line no-undef
+    M.updateTextFields()
     const id = this.$route.params.id
     this.getWorkById(id)
   },
@@ -49,7 +57,8 @@ export default {
   methods: {
     ...mapActions([
       'getWorkById',
-      'updateMainPucture'
+      'updateMainPucture',
+      'deleteImage'
     ]),
     uploadMainPiture (e) {
       const form = new FormData()
@@ -58,12 +67,33 @@ export default {
       this.updateMainPucture({ form: form, id: id })
         .then(data => { this.work.mainPic = data })
         .catch(data => console.log(data))
+    },
+    deleteImageCard (id) {
+      const imageId = this.work.picture[id].id
+      console.log(imageId)
+      this.deleteImage(imageId)
+      this.work.picture.splice(id, 1)
     }
   }
 }
 </script>
 
-<style scoped>
+<style  lang="scss" scoped>
+.card-image{
+  position: relative;
+  &-button {
+    position: absolute;
+    bottom: 5px;
+    right: 0px;
+    background-color: #ffffff9e;
+    h5{
+      margin: 5px;
+    }
+  }
+  &-button:hover{
+    cursor: pointer;
+  }
+}
 .image-upload>input {
   display: none;
 }

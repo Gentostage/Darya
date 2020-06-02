@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import WorksListView, WorksDetailView, UpdateWorkImage
+from .views import WorksListView, WorksDetailView, UpdateWorkImage, DestroyImage
 from rest_framework.authtoken import views
 
 
@@ -10,5 +10,6 @@ urlpatterns = [
     path('works/', WorksListView.as_view()),
     path('works/<int:pk>', WorksDetailView.as_view()),
     path('works/image/<int:pk>', UpdateWorkImage.as_view()),
+    path('picture/<int:pk>', DestroyImage.as_view()),
     # path('auth/', views.obtain_auth_token),
 ]

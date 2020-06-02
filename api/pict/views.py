@@ -1,16 +1,14 @@
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
 from rest_framework import generics
 
-from .models import Works
-from .serializers import (WorksSerializer, SingleWorksSerializer, UpdateWorkImageSerializer)
+from .models import Works, Pictures
+from .serializers import (WorksSerializer, SingleWorksSerializer, UpdateWorkImageSerializer, DestroyCreateImageSerializer)
 
 
 class WorksListView(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly, ]
     queryset = Works.objects.all().order_by('-id')
     serializer_class = WorksSerializer
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
 
 class WorksDetailView(generics.RetrieveAPIView):
     queryset = Works.objects.all()
@@ -21,5 +19,12 @@ class UpdateWorkImage(generics.UpdateAPIView):
     serializer_class = UpdateWorkImageSerializer
     queryset = Works.objects.all()
     lookup_field = 'pk'
+
+class DestroyImage(generics.DestroyAPIView):
+    serializer_class = DestroyCreateImageSerializer
+    permission_classes = [IsAuthenticated, ]
+    queryset = Pictures.objects.all()
+    lookup_field = 'pk'
+
 
 
