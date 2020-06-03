@@ -34,7 +34,8 @@ const routes = [
     name: 'profile',
     component: Profile,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      title: 'Мои работы'
     }
   },
   {
@@ -42,7 +43,8 @@ const routes = [
     name: 'profileCard',
     component: ProfileCard,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      title: 'Мои работы'
     }
   },
   {

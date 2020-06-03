@@ -10,7 +10,7 @@ class WorksListView(generics.ListCreateAPIView):
     queryset = Works.objects.all().order_by('-id')
     serializer_class = WorksSerializer
 
-class WorksDetailView(generics.RetrieveAPIView):
+class WorksDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Works.objects.all()
     serializer_class = SingleWorksSerializer
 
@@ -26,5 +26,8 @@ class DestroyImage(generics.DestroyAPIView):
     queryset = Pictures.objects.all()
     lookup_field = 'pk'
 
+class CreateImage(generics.CreateAPIView):
+    serializer_class = DestroyCreateImageSerializer
+    permission_classes = [IsAuthenticated, ]
 
 

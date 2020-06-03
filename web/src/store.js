@@ -12,10 +12,12 @@ const token = localStorage.getItem('token')
 if (token) {
   axios.defaults.headers.common.Authorization = token
 }
+
 axios.interceptors.response.use(undefined, (err) => {
   return new Promise((resolve, reject) => {
     if (err.response.status === 401 && err.config && !err.config.__isRetryRequest) {
-      this.$store.dispatch('logout')
+      // eslint-disable-next-line no-undef
+      store.dispatch('logout')
     }
     throw err
   })
@@ -50,6 +52,9 @@ export default new Vuex.Store({
     },
     set_work (state, work) {
       state.work = work
+    },
+    uppend_image (state, data) {
+      state.work.picture.push(data)
     }
   },
   actions: {
@@ -142,6 +147,29 @@ export default new Vuex.Store({
     deleteImage ({ commit }, id) {
       axios.delete(`/api/picture/${id}`)
         .catch(resp => { console.log(resp) })
+    },
+    createPucture ({ commit }, form) {
+      return new Promise((resolve, reject) => {
+        axios.post('/api/picture/', form)
+          .then(res => {
+            commit('uppend_image', res.data)
+          })
+          .catch(res => { reject(res) })
+      })
+    },
+    deleteWork ({ commit }, id) {
+      return new Promise((resolve, reject) => {
+        axios.delete(`/api/works/${id}`)
+          .then(() => resolve())
+          .catch((res) => reject(res))
+      })
+    },
+    updateWork ({ commit }, data) {
+      return new Promise((resolve, reject) => {
+        axios.put(`/api/works/${data.id}`, data.form)
+          .then(() => resolve())
+          .catch((res) => reject(res))
+      })
     }
   },
   getters: {

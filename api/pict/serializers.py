@@ -4,9 +4,12 @@ from .models import Works, Pictures
 
 
 class DestroyCreateImageSerializer(serializers.ModelSerializer):
+    mPic = serializers.ReadOnlyField(source='mobileCompressPic.url')
 
     class Meta:
         model= Pictures
+        fields = '__all__'
+
 
 class PicturesSerializer(serializers.ModelSerializer):
     mPic = serializers.ReadOnlyField(source='mobileCompressPic.url')

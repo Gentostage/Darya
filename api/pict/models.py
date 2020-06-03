@@ -32,7 +32,7 @@ class Works(models.Model):
 
 
 class Pictures(models.Model):
-    work = models.ForeignKey(Works, related_name='picture', on_delete='CASCADE', verbose_name=u"Картинкы")
+    work = models.ForeignKey(Works, related_name='picture', on_delete=models.CASCADE, verbose_name=u"Картинкы")
 
     pic = models.ImageField(upload_to='pic', height_field=None, width_field=None, max_length=100
                             , verbose_name=u"Картинка")
